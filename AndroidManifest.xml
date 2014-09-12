@@ -10,6 +10,8 @@
 
     <!-- Required permissions for push notifications -->
     <uses-permission
+        android:name="android.permission.INTERNET" />
+    <uses-permission
         android:name="com.google.android.c2dm.permission.RECEIVE" />
     <permission
         android:name="com.wonderpush.demo.permission.C2D_MESSAGE"
