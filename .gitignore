@@ -1,2 +1,5 @@
 /bin/
 /gen/
+
+# This file contains the application's WonderPush account's credentials
+/res/raw/credentials.properties

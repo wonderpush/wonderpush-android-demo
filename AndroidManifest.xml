@@ -8,11 +8,21 @@
         android:minSdkVersion="8"
         android:targetSdkVersion="19" />
 
+    <!-- Required permissions for push notifications -->
+    <uses-permission
+        android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <permission
+        android:name="com.wonderpush.demo.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+    <uses-permission
+        android:name="com.wonderpush.demo.permission.C2D_MESSAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" >
@@ -22,6 +32,39 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Required for configuring Google Play Services for push notifications -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="GCMSenderId"
+            android:value="@string/push_sender_ids" />
+
+        <!-- Required configuration for WonderPush to properly receive and handle push notification -->
+        <receiver
+            android:name="com.wonderpush.sdk.WonderPushBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND">
+
+            <!-- Put here the icon to be displayed in the notification -->
+            <meta-data
+                android:name="notificationIcon"
+                android:resource="@drawable/ic_launcher" />
+
+            <!-- Put here the activity to start when the user clicks the notification -->
+            <meta-data
+                android:name="activityName"
+                android:value="com.wonderpush.demo.MainActivity" />
+
+            <intent-filter>
+                <action
+                    android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <category
+                    android:name="com.wonderpush.demo" />
+            </intent-filter>
+
+        </receiver>
+
     </application>
 
 </manifest>
