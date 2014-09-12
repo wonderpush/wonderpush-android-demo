@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
@@ -16,5 +16,61 @@
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
+
+    <style name="BaseText" parent="@android:style/TextAppearance.Medium"></style>
+
+    <style name="BigButton" parent="@style/BaseText">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/BigButtons.textColor</item>
+        <item name="android:textSize">36sp</item>
+        <item name="android:padding">20dp</item>
+    </style>
+    <color name="BigButtons.textColor">#FFFFFF</color>
+
+    <style name="BigButton.A">
+        <item name="android:background">@drawable/big_button_a</item>
+    </style>
+    <style name="BigButton.B">
+        <item name="android:background">@drawable/big_button_b</item>
+    </style>
+    <style name="BigButton.C">
+        <item name="android:background">@drawable/big_button_c</item>
+    </style>
+    <style name="BigButton.D">
+        <item name="android:background">@drawable/big_button_d</item>
+    </style>
+    <style name="BigButton.E">
+        <item name="android:background">@drawable/big_button_e</item>
+    </style>
+    <style name="BigButton.F">
+        <item name="android:background">@drawable/big_button_f</item>
+    </style>
+    <style name="BigButton.G">
+        <item name="android:background">@drawable/big_button_g</item>
+    </style>
+    <style name="BigButton.H">
+        <item name="android:background">@drawable/big_button_h</item>
+    </style>
+    <style name="BigButton.I">
+        <item name="android:background">@drawable/big_button_i</item>
+    </style>
+    <color name="BigButtons.backgroundA">#0090FF</color>
+    <color name="BigButtons.backgroundAPressed">#A8CEEC</color>
+    <color name="BigButtons.backgroundB">#10ACFF</color>
+    <color name="BigButtons.backgroundBPressed">#66C8FC</color>
+    <color name="BigButtons.backgroundC">#63C0F2</color>
+    <color name="BigButtons.backgroundCPressed">#8DCFF3</color>
+    <color name="BigButtons.backgroundD">#ACD0E4</color>
+    <color name="BigButtons.backgroundDPressed">#D0CFCF</color>
+    <color name="BigButtons.backgroundE">#959595</color>
+    <color name="BigButtons.backgroundEPressed">#B3B2B2</color>
+    <color name="BigButtons.backgroundF">#333333</color>
+    <color name="BigButtons.backgroundFPressed">#555454</color>
+    <color name="BigButtons.backgroundG">#33CC99</color>
+    <color name="BigButtons.backgroundGPressed">#65CEAB</color>
+    <color name="BigButtons.backgroundH">#009966</color>
+    <color name="BigButtons.backgroundHPressed">#43957A</color>
+    <color name="BigButtons.backgroundI">#DE7171</color>
+    <color name="BigButtons.backgroundIPressed">#C26868</color>
 
 </resources>

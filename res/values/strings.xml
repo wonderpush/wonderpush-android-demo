@@ -2,6 +2,18 @@
 <resources>
 
     <string name="app_name">WonderPush Demo</string>
-    <string name="hello_world">Hello world!</string>
+
+    <string name="initializing">CONNECTING TO WONDERPUSH&#8230;</string>
+    <string name="description">SIMULATE AN EVENT BELOW</string>
+
+    <string name="btnFirstVisit">FIRST VISIT</string>
+    <string name="btnNewsRead">NEWS READ</string>
+    <string name="btnGameOver">GAME OVER</string>
+    <string name="btnLike">LIKE</string>
+    <string name="btnAddToCart">ADD TO CART</string>
+    <string name="btnPurchase">PURCHASE</string>
+    <string name="btnNearEiffelTower">NEAR EIFFEL TWR.</string>
+    <string name="btnNearLouvre">NEAR LOUVRE</string>
+    <string name="btnInactiveUser">INACTIVE USER</string>
 
 </resources>
