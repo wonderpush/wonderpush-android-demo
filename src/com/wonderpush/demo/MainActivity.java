@@ -55,8 +55,8 @@ public class MainActivity extends Activity {
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
+    protected void onResume() {
+        super.onResume();
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         try {
             if (locationManager.getProvider(MOCK_LOCATION_PROVIDER) != null) {
@@ -69,11 +69,11 @@ public class MainActivity extends Activity {
     }
 
     @Override
-    protected void onStop() {
+    protected void onPause() {
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         setMockLocation(0, 0, -1); // poison last location, remembered by the passive location provider
         locationManager.removeTestProvider(MOCK_LOCATION_PROVIDER);
-        super.onStop();
+        super.onPause();
     }
 
     // Helpers
