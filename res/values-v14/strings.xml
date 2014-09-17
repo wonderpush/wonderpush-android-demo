@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="noMockLocationAlertMessage">In order to simulate geographical event, please do:\n- Settings > About device\n- Click 7 times Build number\n- Settings > Developer options\n- Activate the global switch\n- Check Allow mock locations</string>
+
+</resources>

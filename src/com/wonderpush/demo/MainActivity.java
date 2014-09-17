@@ -6,10 +6,12 @@ import java.util.Properties;
 import com.wonderpush.sdk.WonderPush;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
@@ -29,6 +31,8 @@ public class MainActivity extends Activity {
     private final static float MOCK_LOCATION_LOUVRE_LAT = 48.860339f;
     private final static float MOCK_LOCATION_LOUVRE_LON = 2.337599f;
     private final static float MOCK_LOCATION_ACCURACY = 3.f;
+
+    private boolean mockLocationAvailable = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,28 +55,47 @@ public class MainActivity extends Activity {
             Toast.makeText(this, "Failed to load WonderPush credentials: " + ex.getMessage(), Toast.LENGTH_LONG).show();
         }
 
+        mockLocationAvailable = checkCallingOrSelfPermission("android.Manifest.permission.ACCESS_MOCK_LOCATION") == PackageManager.PERMISSION_GRANTED;
+        checkMockLocationAndAlert();
+
         setContentView(R.layout.activity_main);
+    }
+
+    private boolean checkMockLocationAndAlert() {
+        if (!mockLocationAvailable) {
+            new AlertDialog.Builder(this)
+                    .setIcon(R.drawable.ic_launcher)
+                    .setTitle(R.string.noMockLocationAlertTitle)
+                    .setMessage(R.string.noMockLocationAlertMessage)
+                    .setPositiveButton(R.string.noMockLocationAlertOkButton, null)
+                    .show();
+        }
+        return mockLocationAvailable;
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        try {
-            if (locationManager.getProvider(MOCK_LOCATION_PROVIDER) != null) {
+        if (mockLocationAvailable) {
+            LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            try {
+                if (locationManager.getProvider(MOCK_LOCATION_PROVIDER) != null) {
+                    locationManager.removeTestProvider(MOCK_LOCATION_PROVIDER);
+                }
+            } catch (SecurityException ex) {
                 locationManager.removeTestProvider(MOCK_LOCATION_PROVIDER);
             }
-        } catch (SecurityException ex) {
-            locationManager.removeTestProvider(MOCK_LOCATION_PROVIDER);
+            locationManager.addTestProvider(MOCK_LOCATION_PROVIDER, false, false, false, false, false, false, false, Criteria.POWER_LOW, Criteria.ACCURACY_FINE);
         }
-        locationManager.addTestProvider(MOCK_LOCATION_PROVIDER, false, false, false, false, false, false, false, Criteria.POWER_LOW, Criteria.ACCURACY_FINE);
     }
 
     @Override
     protected void onPause() {
-        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        setMockLocation(0, 0, -1); // poison last location, remembered by the passive location provider
-        locationManager.removeTestProvider(MOCK_LOCATION_PROVIDER);
+        if (mockLocationAvailable) {
+            LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            setMockLocation(0, 0, -1); // poison last location, remembered by the passive location provider
+            locationManager.removeTestProvider(MOCK_LOCATION_PROVIDER);
+        }
         super.onPause();
     }
 
@@ -85,7 +108,7 @@ public class MainActivity extends Activity {
         location.setAccuracy(accuracy);
         location.setTime(System.currentTimeMillis());
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             try {
                 Method locationJellyBeanFixMethod = Location.class.getMethod("makeComplete");
                 if (locationJellyBeanFixMethod != null) {
@@ -127,11 +150,17 @@ public class MainActivity extends Activity {
     }
 
     public void btnNearEiffelTower_onClick(View button) {
+        if (!checkMockLocationAndAlert()) {
+            return;
+        }
         setMockLocation(MOCK_LOCATION_EIFFEL_TOWER_LAT, MOCK_LOCATION_EIFFEL_TOWER_LON, MOCK_LOCATION_ACCURACY);
         WonderPush.trackEvent("geofencing", null);
     }
 
     public void btnNearLouvre_onClick(View button) {
+        if (!checkMockLocationAndAlert()) {
+            return;
+        }
         setMockLocation(MOCK_LOCATION_LOUVRE_LAT, MOCK_LOCATION_LOUVRE_LON, MOCK_LOCATION_ACCURACY);
         WonderPush.trackEvent("geofencing", null);
     }
