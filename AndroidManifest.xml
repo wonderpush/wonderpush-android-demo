@@ -26,6 +26,9 @@
     <uses-permission
         android:name="com.wonderpush.demo.permission.C2D_MESSAGE" />
 
+    <uses-permission
+        android:name="android.permission.VIBRATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
