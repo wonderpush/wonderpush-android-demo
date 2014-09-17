@@ -56,7 +56,6 @@ public class MainActivity extends Activity {
         }
 
         mockLocationAvailable = checkCallingOrSelfPermission("android.Manifest.permission.ACCESS_MOCK_LOCATION") == PackageManager.PERMISSION_GRANTED;
-        checkMockLocationAndAlert();
 
         setContentView(R.layout.activity_main);
     }
