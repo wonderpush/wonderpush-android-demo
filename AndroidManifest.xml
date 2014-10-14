@@ -19,6 +19,9 @@
     <uses-permission
         android:name="android.permission.INTERNET" />
     <uses-permission
+        android:name="android.permission.GET_ACCOUNTS"
+        android:maxSdkVersion="15" />
+    <uses-permission
         android:name="com.google.android.c2dm.permission.RECEIVE" />
     <permission
         android:name="com.wonderpush.demo.permission.C2D_MESSAGE"
@@ -44,6 +47,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Permits the SDK to initialize itself whenever needed, without need for your application to launch -->
+        <meta-data
+            android:name="wonderpushInitializerClass"
+            android:value="com.wonderpush.demo.WonderPushInitializerImpl" />
 
         <!-- Required for configuring Google Play Services for push notifications -->
         <meta-data
@@ -75,6 +83,15 @@
                     android:name="com.wonderpush.demo" />
             </intent-filter>
 
+        </receiver>
+
+        <!-- Required configuration for WonderPush to refresh push tokens,
+             as they are not guaranteed to work after an update -->
+        <receiver android:name="com.wonderpush.sdk.WonderPushOnUpgradeReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REPLACED" />
+                <data android:scheme="package" android:path="com.wonderpush.demo" />
+            </intent-filter>
         </receiver>
 
     </application>
