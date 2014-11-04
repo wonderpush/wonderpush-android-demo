@@ -2,7 +2,7 @@
 <resources>
 
     <string name="noMockLocationAlertTitle">Impossible de simuler des positions fictives</string>
-    <string name="noMockLocationAlertMessage">Afin de simulater des événements géographiques, faites:\n- Paramètres > À propos de l\'appareil\n- Cliquez 7 fois Numéro de build\n- Paramètres > Options pour les développeurs\n- Activez le bouton global\n- Cochez Positions fictives</string>
+    <string name="noMockLocationAlertMessage">Afin de simuler des événements géographiques, faites:\n- Paramètres > À propos de l\'appareil\n- Cliquez 7 fois Numéro de build\n- Paramètres > Options pour les développeurs\n- Activez le bouton global\n- Cochez Positions fictives</string>
     <string name="noMockLocationAlertOkButton">OK</string>
 
 </resources>
