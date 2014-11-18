@@ -35,20 +35,24 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        LocalBroadcastManager.getInstance(this).registerReceiver(new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                TextView label = (TextView) findViewById(R.id.lblDescription);
-                label.setText(R.string.description);
-            }
-        }, new IntentFilter(WonderPush.INTENT_INTIALIZED));
+        setContentView(R.layout.activity_main);
 
         WonderPush.initialize(this);
 
-        mockLocationAvailable = checkCallingOrSelfPermission("android.Manifest.permission.ACCESS_MOCK_LOCATION") == PackageManager.PERMISSION_GRANTED;
+        if (WonderPush.isReady()) {
+            TextView label = (TextView) findViewById(R.id.lblDescription);
+            label.setText(R.string.description);
+        } else {
+            LocalBroadcastManager.getInstance(this).registerReceiver(new BroadcastReceiver() {
+                @Override
+                public void onReceive(Context context, Intent intent) {
+                    TextView label = (TextView) findViewById(R.id.lblDescription);
+                    label.setText(R.string.description);
+                }
+            }, new IntentFilter(WonderPush.INTENT_INTIALIZED));
+        }
 
-        setContentView(R.layout.activity_main);
+        mockLocationAvailable = checkCallingOrSelfPermission("android.Manifest.permission.ACCESS_MOCK_LOCATION") == PackageManager.PERMISSION_GRANTED;
     }
 
     private boolean checkMockLocationAndAlert() {
