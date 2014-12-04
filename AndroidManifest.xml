@@ -62,6 +62,14 @@
             android:name="GCMSenderId"
             android:value="@string/push_sender_ids" />
 
+        <!-- Required to properly hand notifications to the application while opened -->
+        <service
+            android:name="com.wonderpush.sdk.WonderPushService"
+            android:enabled="true"
+            android:exported="false"
+            android:label="Push Notification service">
+        </service>
+
         <!-- Required configuration for WonderPush to properly receive and handle push notification -->
         <receiver
             android:name="com.wonderpush.sdk.WonderPushBroadcastReceiver"

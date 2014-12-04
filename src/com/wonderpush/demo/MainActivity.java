@@ -55,6 +55,11 @@ public class MainActivity extends Activity {
         mockLocationAvailable = checkCallingOrSelfPermission("android.Manifest.permission.ACCESS_MOCK_LOCATION") == PackageManager.PERMISSION_GRANTED;
     }
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+        WonderPush.showPotentialNotification(this, intent);
+    }
+
     private boolean checkMockLocationAndAlert() {
         if (!mockLocationAvailable) {
             new AlertDialog.Builder(this)
