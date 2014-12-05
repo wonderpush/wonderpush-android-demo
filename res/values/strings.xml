@@ -3,6 +3,7 @@
 
     <string name="app_name">WonderPush Demo</string>
 
+    <string name="mnuMainOpenChildActivity">Child activity</string>
     <string name="noMockLocationAlertTitle">Cannot simulate mock locations</string>
     <string name="noMockLocationAlertMessage">In order to simulate geographical event, please do:\n- Settings > Applications > Development\n- Check Allow mock locations</string>
     <string name="noMockLocationAlertOkButton">OK</string>
@@ -19,5 +20,7 @@
     <string name="btnNearEiffelTower">NEAR EIFFEL TWR.</string>
     <string name="btnNearLouvre">NEAR LOUVRE</string>
     <string name="btnInactiveUser">INACTIVE USER</string>
+    <string name="title_activity_child">Child activity</string>
+    <string name="lblChildActivity">Child activity</string>
 
 </resources>

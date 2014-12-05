@@ -16,6 +16,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -96,6 +98,21 @@ public class MainActivity extends Activity {
             locationManager.removeTestProvider(MOCK_LOCATION_PROVIDER);
         }
         super.onPause();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.mnuMainOpenChildActivity) {
+            startActivity(new Intent().setClass(this, ChildActivity.class));
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     // Helpers

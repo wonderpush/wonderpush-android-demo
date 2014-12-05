@@ -49,6 +49,11 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".ChildActivity"
+            android:label="@string/title_activity_child" >
+        </activity>
+
         <!-- Permits the SDK to initialize itself whenever needed, without need for your application to launch -->
         <meta-data
             android:name="wonderpushInitializerClass"

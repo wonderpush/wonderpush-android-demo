@@ -48,6 +48,8 @@ public class DemoApplication extends Application {
                 Toast.makeText(context, "Method " + method + " called with arg: " + arg,  Toast.LENGTH_LONG).show();
             }
         }, catchallMethodIntentFilter);
+
+        WonderPush.initialize(this);
     }
 
 }
