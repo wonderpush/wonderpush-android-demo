@@ -103,6 +103,10 @@ public class MainActivity extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
+        MenuItem toggle = menu.findItem(R.id.mnuMainToggleNotificationEnabled);
+        if (toggle != null) {
+            toggle.setChecked(WonderPush.getNotificationEnabled());
+        }
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -111,6 +115,9 @@ public class MainActivity extends Activity {
         int id = item.getItemId();
         if (id == R.id.mnuMainOpenChildActivity) {
             startActivity(new Intent().setClass(this, ChildActivity.class));
+        } else if (id == R.id.mnuMainToggleNotificationEnabled) {
+            WonderPush.setNotificationEnabled(!WonderPush.getNotificationEnabled());
+            item.setChecked(WonderPush.getNotificationEnabled());
         }
         return super.onOptionsItemSelected(item);
     }
