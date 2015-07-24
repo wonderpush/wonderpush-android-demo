@@ -15,6 +15,7 @@ public class WonderPushInitializerImpl implements WonderPushInitializer {
         try {
             Properties props = new Properties();
             props.load(context.getResources().openRawResource(R.raw.credentials));
+            WonderPush.setLogging(true);
             WonderPush.initialize(context, props.getProperty("clientId"), props.getProperty("clientSecret"));
         } catch (Exception ex) {
             Log.e(this.getClass().getSimpleName(), "Failed to load WonderPush credentials for initialization", ex);
