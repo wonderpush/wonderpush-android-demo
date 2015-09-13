@@ -52,7 +52,34 @@
 
         <activity
             android:name=".ChildActivity"
-            android:label="@string/title_activity_child" >
+            android:label="@string/title_activity_child"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.wonderpush.demo.MainActivity" />
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".NavigationActivity"
+            android:label="@string/title_activity_navigation"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.wonderpush.demo.MainActivity" />
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="wonderpushdemo" android:host="navigation"/>
+            </intent-filter>
         </activity>
 
         <!-- Permits the SDK to initialize itself whenever needed, without need for your application to launch -->
@@ -74,6 +101,10 @@
             android:enabled="true"
             android:exported="false"
             android:label="Push Notification service">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <data android:scheme="wonderpush" />
+            </intent-filter>
         </service>
 
         <!-- Required configuration for WonderPush to properly receive and handle push notification -->

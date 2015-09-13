@@ -10,4 +10,7 @@
     <string name="initializing">CONNEXION À WONDERPUSH&#8230;</string>
     <string name="description">SIMULEZ UN ÉVÉNEMENT</string>
 
+    <string name="title_activity_navigation">Navigation</string>
+    <string name="txtNavigationText">Chargement de l\'intent&#8230;</string>
+
 </resources>

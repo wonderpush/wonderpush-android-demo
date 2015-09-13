@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.PatternMatcher;
+import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.content.LocalBroadcastManager;
 import android.widget.Toast;
 
@@ -16,6 +17,27 @@ public class DemoApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                Toast.makeText(getApplicationContext(), "RECEIVED PUSH: " + String.valueOf(intent), Toast.LENGTH_LONG).show();
+            }
+        }, new IntentFilter(WonderPush.INTENT_NOTIFICATION_OPENED));
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                Toast.makeText(getApplicationContext(), "Deeplink resolved programmatically", Toast.LENGTH_SHORT).show();
+                Intent openIntent = new Intent();
+                openIntent.setClass(context, NavigationActivity.class);
+                openIntent.fillIn(intent, 0);
+                openIntent.putExtra("resolvedProgrammatically", true);
+                TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
+                stackBuilder.addNextIntentWithParentStack(openIntent);
+                stackBuilder.startActivities();
+            }
+        }, new IntentFilter(WonderPush.INTENT_NOTIFICATION_WILL_OPEN));
 
         // Example notification button action `method` receiver
         IntentFilter exampleMethodIntentFilter = new IntentFilter();

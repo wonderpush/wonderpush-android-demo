@@ -21,7 +21,11 @@
     <string name="btnNearEiffelTower">NEAR EIFFEL TWR.</string>
     <string name="btnNearLouvre">NEAR LOUVRE</string>
     <string name="btnInactiveUser">INACTIVE USER</string>
+
     <string name="title_activity_child">Child activity</string>
     <string name="lblChildActivity">Child activity</string>
+
+    <string name="title_activity_navigation">Navigation</string>
+    <string name="txtNavigationText">Loading incoming intent&#8230;</string>
 
 </resources>
