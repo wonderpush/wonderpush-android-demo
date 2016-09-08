@@ -1,5 +1,10 @@
-/bin/
-/gen/
-
-# This file contains the application's WonderPush account's credentials
-/res/raw/credentials.properties
+*.iml
+.gradle
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/build
+/captures
+/.idea/
+/local.gradle

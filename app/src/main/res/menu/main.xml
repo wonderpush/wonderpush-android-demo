@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item android:id="@+id/mnuMainReadInstallationCustom" android:title="@string/mnuMainReadInstallationCustom"/>
+    <item android:id="@+id/mnuMainOpenChildActivity" android:title="@string/mnuMainOpenChildActivity"/>
+    <item android:id="@+id/mnuMainToggleNotificationEnabled" android:title="@string/mnuMainToggleNotificationEnabled" android:checkable="true"/>
+    <item android:id="@+id/mnuMainSetUserId" android:title="@string/mnuMainSetUserId"/>
+
+</menu>
