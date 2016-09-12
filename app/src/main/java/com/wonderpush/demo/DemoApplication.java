@@ -3,15 +3,18 @@ package com.wonderpush.demo;
 import com.wonderpush.sdk.WonderPush;
 
 import android.app.Application;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.PatternMatcher;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.content.LocalBroadcastManager;
-import android.util.Log;
 import android.widget.Toast;
+
+import java.util.Random;
 
 public class DemoApplication extends Application {
 
@@ -52,6 +55,31 @@ public class DemoApplication extends Application {
                 if (WonderPush.INTENT_NOTIFICATION_WILL_OPEN_EXTRA_NOTIFICATION_TYPE_DATA.equals(
                         intent.getStringExtra(WonderPush.INTENT_NOTIFICATION_WILL_OPEN_EXTRA_NOTIFICATION_TYPE))) {
                     Toast.makeText(getApplicationContext(), "Data notification received for " + getPackageManager().getApplicationLabel(getApplicationInfo()), Toast.LENGTH_SHORT).show();
+
+                    // If you want to manually display a notification in response to a data notification, do the following
+                    Intent pushNotif = intent.getParcelableExtra(WonderPush.INTENT_NOTIFICATION_WILL_OPEN_EXTRA_RECEIVED_PUSH_NOTIFICATION);
+                    String message = pushNotif.getStringExtra("manual_display_message");
+                    if (message != null) {
+                        Toast.makeText(getApplicationContext(), "Building notification manually", Toast.LENGTH_SHORT).show();
+                        Intent openIntent = new Intent(context, NavigationActivity.class);
+                        // Copy the push notification payload
+                        openIntent.putExtras(pushNotif);
+                        // Copy the local intent extras so that the WonderPush SDK can track the click
+                        openIntent.putExtras(intent);
+                        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, openIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_ONE_SHOT);
+
+                        NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext())
+                                .setAutoCancel(true)
+                                .setSmallIcon(R.drawable.notification_icon)
+                                .setContentTitle(getPackageManager().getApplicationLabel(getApplicationInfo()) + " manual data notif")
+                                .setContentText(message)
+                                .setStyle(new NotificationCompat.BigTextStyle()
+                                        .bigText(message))
+                                .setContentIntent(pendingIntent);
+                        android.app.NotificationManager mNotificationManager = (android.app.NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+                        mNotificationManager.notify(null, new Random().nextInt(), builder.build());
+                    }
+
                 }
             }
         }, new IntentFilter(WonderPush.INTENT_NOTIFICATION_WILL_OPEN));
