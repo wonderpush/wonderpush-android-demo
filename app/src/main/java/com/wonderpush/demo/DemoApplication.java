@@ -22,6 +22,14 @@ public class DemoApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
+        LocalBroadcastManager.getInstance(this).registerReceiver(new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                String oldPushToken = intent.getStringExtra(WonderPush.INTENT_PUSH_TOKEN_CHANGED_EXTRA_OLD_KNOWN_PUSH_TOKEN);
+                String pushToken = intent.getStringExtra(WonderPush.INTENT_PUSH_TOKEN_CHANGED_EXTRA_PUSH_TOKEN);
+                Toast.makeText(getApplicationContext(), "TOKEN CHANGED from " + oldPushToken + " to " + pushToken, Toast.LENGTH_LONG).show();
+            }
+        }, new IntentFilter(WonderPush.INTENT_PUSH_TOKEN_CHANGED));
         // Inform of INTENT_NOTIFICATION_OPENED intents
         LocalBroadcastManager.getInstance(this).registerReceiver(new BroadcastReceiver() {
             @Override
