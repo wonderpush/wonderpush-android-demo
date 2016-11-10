@@ -161,6 +161,12 @@ public class MainActivity extends AppCompatActivity {
                         }
                     })
                     .show();
+        } else if (id == R.id.mnuMainOpenTreeA1Activity) {
+            startActivity(new Intent().setClass(this, TreeA1Activity.class));
+        } else if (id == R.id.mnuMainOpenTreeA2Activity) {
+            startActivity(new Intent().setClass(this, TreeA2Activity.class));
+        } else if (id == R.id.mnuMainOpenOrphanActivity) {
+            startActivity(new Intent().setClass(this, OrphanActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }

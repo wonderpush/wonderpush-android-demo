@@ -3,6 +3,9 @@
 
     <item android:id="@+id/mnuMainReadInstallationCustom" android:title="@string/mnuMainReadInstallationCustom"/>
     <item android:id="@+id/mnuMainOpenChildActivity" android:title="@string/mnuMainOpenChildActivity"/>
+    <item android:id="@+id/mnuMainOpenTreeA1Activity" android:title="@string/mnuMainOpenTreeA1Activity"/>
+    <item android:id="@+id/mnuMainOpenTreeA2Activity" android:title="@string/mnuMainOpenTreeA2Activity"/>
+    <item android:id="@+id/mnuMainOpenOrphanActivity" android:title="@string/mnuMainOpenOrphanActivity"/>
     <item android:id="@+id/mnuMainToggleNotificationEnabled" android:title="@string/mnuMainToggleNotificationEnabled" android:checkable="true"/>
     <item android:id="@+id/mnuMainSetUserId" android:title="@string/mnuMainSetUserId"/>
 

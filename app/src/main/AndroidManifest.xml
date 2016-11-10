@@ -90,6 +90,118 @@
                     android:scheme="wonderpushdemo" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".TreeA1Activity"
+            android:label="@string/title_activity_tree_a1"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.wonderpush.demo.MainActivity" />
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:host="tree"
+                    android:path="/a1"
+                    android:scheme="wonderpushdemo" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".TreeA1B1Activity"
+            android:label="@string/title_activity_tree_a1_b1"
+            android:parentActivityName=".TreeA1Activity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.wonderpush.demo.TreeA1Activity" />
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:host="tree"
+                    android:path="/a1/b1"
+                    android:scheme="wonderpushdemo" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".TreeA1B2Activity"
+            android:label="@string/title_activity_tree_a1_b2"
+            android:parentActivityName=".TreeA1Activity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.wonderpush.demo.TreeA1Activity" />
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:host="tree"
+                    android:path="/a1/b2"
+                    android:scheme="wonderpushdemo" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".TreeA2Activity"
+            android:label="@string/title_activity_tree_a2"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.wonderpush.demo.MainActivity" />
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:host="tree"
+                    android:path="/a2"
+                    android:scheme="wonderpushdemo" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".TreeA2B1Activity"
+            android:label="@string/title_activity_tree_a2_b1"
+            android:parentActivityName=".TreeA2Activity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.wonderpush.demo.TreeA2Activity" />
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:host="tree"
+                    android:path="/a2/b1"
+                    android:scheme="wonderpushdemo" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".TreeA2B2Activity"
+            android:label="@string/title_activity_tree_a2_b2"
+            android:parentActivityName=".TreeA2Activity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.wonderpush.demo.TreeA2Activity" />
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:host="tree"
+                    android:path="/a2/b2"
+                    android:scheme="wonderpushdemo" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".OrphanActivity" android:label="@string/title_activity_orphan">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:host="orphan"
+                    android:scheme="wonderpushdemo" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

@@ -34,4 +34,15 @@
     <string name="btnMainSetUserIdDialogOK">OK</string>
     <string name="btnMainSetUserIdDialogCancel">Cancel</string>
 
+    <string name="title_activity_tree_a1">Tree A1</string>
+    <string name="title_activity_tree_a1_b1">Tree A1 B1</string>
+    <string name="title_activity_tree_a1_b2">Tree A1 B2</string>
+    <string name="title_activity_tree_a2">Tree A2</string>
+    <string name="title_activity_tree_a2_b1">Tree A2 B1</string>
+    <string name="title_activity_tree_a2_b2">Tree A2 B2</string>
+    <string name="title_activity_orphan">Orphan</string>
+    <string name="mnuMainOpenTreeA1Activity">Tree A1 activity</string>
+    <string name="mnuMainOpenTreeA2Activity">Tree A2 activity</string>
+    <string name="mnuMainOpenOrphanActivity">Orphan activity</string>
+
 </resources>
