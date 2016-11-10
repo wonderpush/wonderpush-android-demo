@@ -5,13 +5,13 @@ import java.util.Arrays;
 
 import com.wonderpush.sdk.WonderPush;
 
-import android.app.Activity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
-public class NavigationActivity extends Activity {
+public class NavigationActivity extends AppCompatActivity {
 
     TextView txtNavigationText;
 
