@@ -22,6 +22,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -149,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
                     .setPositiveButton(R.string.btnMainSetUserIdDialogOK, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            WonderPush.setUserId(txtUserId.getText().toString());
+                            WonderPush.setUserId(TextUtils.isEmpty(txtUserId.getText().toString()) ? null : txtUserId.getText().toString());
                             dialog.dismiss();
                         }
                     })
