@@ -1,15 +1,23 @@
 package com.wonderpush.demo;
 
 import com.wonderpush.sdk.WonderPush;
+import com.wonderpush.sdk.WonderPushChannelPreference;
+import com.wonderpush.sdk.WonderPushUserPreferences;
 
 import android.app.Application;
+import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.Resources;
+import android.graphics.Color;
+import android.net.Uri;
 import android.os.PatternMatcher;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.content.LocalBroadcastManager;
 import android.widget.Toast;
@@ -125,6 +133,38 @@ public class DemoApplication extends Application {
         }, catchallMethodIntentFilter);
 
         WonderPush.initialize(this);
+        WonderPush.putInstallationCustomProperties(null);
+
+        WonderPushUserPreferences.setDefaultChannelId("default");
+        if (WonderPushUserPreferences.getChannelPreference("default") == null) {
+            // The wrapping if serves to not modify existing preferences (as we don't store them elsewhere)
+            WonderPushUserPreferences.putChannelPreference(
+                    new WonderPushChannelPreference("default", null)
+                            .setName("Default")
+                            .setDescription("Miscellaneous notifications.")
+            );
+        }
+        // Here we declare a new channel
+        // On Android O this would create it once and leave it unchanged (except for name and description)
+        // On Android pre O, this would reset the user preferences stored in WonderPush
+        WonderPushUserPreferences.putChannelPreference(
+                new WonderPushChannelPreference("important", null)
+                        .setName("Important")
+                        .setDescription("Important notifications you should not overlook.")
+                        .setImportance(NotificationManagerCompat.IMPORTANCE_MAX)
+                        .setColor(Color.RED)
+                        .setLights(true)
+                        .setLightColor(Color.RED)
+                        .setSound(true)
+                        .setSoundUri(new Uri.Builder()
+                                .scheme(ContentResolver.SCHEME_ANDROID_RESOURCE)
+                                .authority(getPackageName())
+                                .path(String.valueOf(R.raw.sound))
+                                .build())
+                        .setVibrate(true)
+                        .setVibrateInSilentMode(true)
+                        .setVibrationPattern(new long[]{200, 50, 200, 50, 200})
+        );
     }
 
 }

@@ -44,5 +44,8 @@
     <string name="mnuMainOpenTreeA1Activity">Tree A1 activity</string>
     <string name="mnuMainOpenTreeA2Activity">Tree A2 activity</string>
     <string name="mnuMainOpenOrphanActivity">Orphan activity</string>
+    <string name="mnuMainPreferences">Preferences&#8230;</string>
+
+    <string name="title_activity_preferences">Preferences</string>
 
 </resources>

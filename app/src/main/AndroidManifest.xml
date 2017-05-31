@@ -97,10 +97,13 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.wonderpush.demo.MainActivity" />
+
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
                     android:host="tree"
                     android:path="/a1"
@@ -114,10 +117,13 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.wonderpush.demo.TreeA1Activity" />
+
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
                     android:host="tree"
                     android:path="/a1/b1"
@@ -131,10 +137,13 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.wonderpush.demo.TreeA1Activity" />
+
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
                     android:host="tree"
                     android:path="/a1/b2"
@@ -148,10 +157,13 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.wonderpush.demo.MainActivity" />
+
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
                     android:host="tree"
                     android:path="/a2"
@@ -165,10 +177,13 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.wonderpush.demo.TreeA2Activity" />
+
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
                     android:host="tree"
                     android:path="/a2/b1"
@@ -182,24 +197,46 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.wonderpush.demo.TreeA2Activity" />
+
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
                     android:host="tree"
                     android:path="/a2/b2"
                     android:scheme="wonderpushdemo" />
             </intent-filter>
         </activity>
-        <activity android:name=".OrphanActivity" android:label="@string/title_activity_orphan">
+        <activity
+            android:name=".OrphanActivity"
+            android:label="@string/title_activity_orphan">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
                     android:host="orphan"
                     android:scheme="wonderpushdemo" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".PreferencesActivity"
+            android:label="@string/title_activity_preferences"
+            android:parentActivityName=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:scheme="wonderpushdemo"
+                    android:host="preferences" />
             </intent-filter>
         </activity>
     </application>

@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.mnuMainReadInstallationCustom) {
-            Toast.makeText(this, WonderPush.getInstallationCustomProperties().toString(), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, String.valueOf(WonderPush.getInstallationCustomProperties()), Toast.LENGTH_LONG).show();
         } else if (id == R.id.mnuMainOpenChildActivity) {
             startActivity(new Intent().setClass(this, ChildActivity.class));
         } else if (id == R.id.mnuMainToggleNotificationEnabled) {
@@ -167,6 +167,8 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent().setClass(this, TreeA2Activity.class));
         } else if (id == R.id.mnuMainOpenOrphanActivity) {
             startActivity(new Intent().setClass(this, OrphanActivity.class));
+        } else if (id == R.id.mnuMainPreferences) {
+            startActivity(new Intent().setClass(this, PreferencesActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }

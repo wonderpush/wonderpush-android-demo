@@ -5,6 +5,7 @@
     <string name="mnuMainOpenChildActivity">Activité fille</string>
     <string name="mnuMainToggleNotificationEnabled">Activer les notifications</string>
     <string name="mnuMainSetUserId">Changer d\'id utilisateur</string>
+    <string name="mnuMainPreferences">Préférences&#8230;</string>
     <string name="noMockLocationAlertTitle">Impossible de simuler des positions fictives</string>
     <string name="noMockLocationAlertMessage">Afin de simuler des événements géographiques, faites:\n- Paramètres > Applications > Développement\n- Cochez Positions fictives</string>
     <string name="noMockLocationAlertOkButton">OK</string>
@@ -21,5 +22,7 @@
     <string name="titleMainSetUserIdDialog">Nouvel id utilisateur :</string>
     <string name="btnMainSetUserIdDialogOK">OK</string>
     <string name="btnMainSetUserIdDialogCancel">Annuler</string>
+
+    <string name="title_activity_preferences">Préférences</string>
 
 </resources>

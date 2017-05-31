@@ -8,5 +8,6 @@
     <item android:id="@+id/mnuMainOpenOrphanActivity" android:title="@string/mnuMainOpenOrphanActivity"/>
     <item android:id="@+id/mnuMainToggleNotificationEnabled" android:title="@string/mnuMainToggleNotificationEnabled" android:checkable="true"/>
     <item android:id="@+id/mnuMainSetUserId" android:title="@string/mnuMainSetUserId"/>
+    <item android:id="@+id/mnuMainPreferences" android:title="@string/mnuMainPreferences"/>
 
 </menu>
