@@ -4,11 +4,10 @@ import android.graphics.Color;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-import com.wonderpush.sdk.WonderPushChannelPreference;
+import com.wonderpush.sdk.WonderPushChannel;
 import com.wonderpush.sdk.WonderPushUserPreferences;
 
 public class PreferencesActivity extends AppCompatActivity {
@@ -38,17 +37,18 @@ public class PreferencesActivity extends AppCompatActivity {
         radDefaultColorRed = (RadioButton) findViewById(R.id.radDefaultColorRed);
         radDefaultColorBlue = (RadioButton) findViewById(R.id.radDefaultColorBlue);
 
-        WonderPushChannelPreference defaultChannelPreference = WonderPushUserPreferences.getChannelPreference("default");
-        triDefaultSound.setCheckedBoolean(defaultChannelPreference.getSound());
-        triDefaultVibrate.setCheckedBoolean(defaultChannelPreference.getVibrate());
-        triDefaultVibrateSilentMode.setCheckedBoolean(defaultChannelPreference.getVibrateInSilentMode());
-        if (defaultChannelPreference.getColor() == null) {
+        // The channel existence is ensured in DemoApplication, no need to test against null
+        WonderPushChannel defaultChannel = WonderPushUserPreferences.getChannel("default");
+        triDefaultSound.setCheckedBoolean(defaultChannel.getSound());
+        triDefaultVibrate.setCheckedBoolean(defaultChannel.getVibrate());
+        triDefaultVibrateSilentMode.setCheckedBoolean(defaultChannel.getVibrateInSilentMode());
+        if (defaultChannel.getColor() == null) {
             radDefaultColorAsIs.setChecked(true);
-        } else if (defaultChannelPreference.getColor() == Color.TRANSPARENT) {
+        } else if (defaultChannel.getColor() == Color.TRANSPARENT) {
             radDefaultColorDefault.setChecked(true);
-        } else if (defaultChannelPreference.getColor() == Color.RED) {
+        } else if (defaultChannel.getColor() == Color.RED) {
             radDefaultColorRed.setChecked(true);
-        } else if (defaultChannelPreference.getColor() == Color.BLUE) {
+        } else if (defaultChannel.getColor() == Color.BLUE) {
             radDefaultColorBlue.setChecked(true);
         } else {
             radDefaultColorNone.setChecked(true);
@@ -57,43 +57,43 @@ public class PreferencesActivity extends AppCompatActivity {
         triDefaultSound.setOnCheckedTriStateChangeListener(new TriStateCheckBox.OnCheckedTriStateChangeListener() {
             @Override
             public void onCheckedTriStateChanged(TriStateCheckBox triStateCheckBox, TriStateCheckBox.State state) {
-                WonderPushChannelPreference defaultChannelPreference = WonderPushUserPreferences.getChannelPreference("default");
-                defaultChannelPreference.setSound(state.getBoolean());
-                WonderPushUserPreferences.putChannelPreference(defaultChannelPreference);
+                WonderPushChannel defaultChannel = WonderPushUserPreferences.getChannel("default");
+                defaultChannel.setSound(state.getBoolean());
+                WonderPushUserPreferences.putChannel(defaultChannel);
             }
         });
         triDefaultVibrate.setOnCheckedTriStateChangeListener(new TriStateCheckBox.OnCheckedTriStateChangeListener() {
             @Override
             public void onCheckedTriStateChanged(TriStateCheckBox triStateCheckBox, TriStateCheckBox.State state) {
-                WonderPushChannelPreference defaultChannelPreference = WonderPushUserPreferences.getChannelPreference("default");
-                defaultChannelPreference.setVibrate(state.getBoolean());
-                WonderPushUserPreferences.putChannelPreference(defaultChannelPreference);
+                WonderPushChannel defaultChannel = WonderPushUserPreferences.getChannel("default");
+                defaultChannel.setVibrate(state.getBoolean());
+                WonderPushUserPreferences.putChannel(defaultChannel);
             }
         });
         triDefaultVibrateSilentMode.setOnCheckedTriStateChangeListener(new TriStateCheckBox.OnCheckedTriStateChangeListener() {
             @Override
             public void onCheckedTriStateChanged(TriStateCheckBox triStateCheckBox, TriStateCheckBox.State state) {
-                WonderPushChannelPreference defaultChannelPreference = WonderPushUserPreferences.getChannelPreference("default");
-                defaultChannelPreference.setVibrateInSilentMode(state.getBoolean());
-                WonderPushUserPreferences.putChannelPreference(defaultChannelPreference);
+                WonderPushChannel defaultChannel = WonderPushUserPreferences.getChannel("default");
+                defaultChannel.setVibrateInSilentMode(state.getBoolean());
+                WonderPushUserPreferences.putChannel(defaultChannel);
             }
         });
         rdgDefaultColor.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-                WonderPushChannelPreference defaultChannelPreference = WonderPushUserPreferences.getChannelPreference("default");
+                WonderPushChannel defaultChannel = WonderPushUserPreferences.getChannel("default");
                 Object tag = findViewById(checkedId).getTag();
                 if (tag instanceof String) {
                     String color = (String) tag;
                     if ("null".equals(color)) {
-                        defaultChannelPreference.setColor(null);
+                        defaultChannel.setColor(null);
                     } else if ("default".equals(color)) {
-                        defaultChannelPreference.setColor(Color.TRANSPARENT);
+                        defaultChannel.setColor(Color.TRANSPARENT);
                     } else {
-                        defaultChannelPreference.setColor(Color.parseColor(color));
+                        defaultChannel.setColor(Color.parseColor(color));
                     }
                 }
-                WonderPushUserPreferences.putChannelPreference(defaultChannelPreference);
+                WonderPushUserPreferences.putChannel(defaultChannel);
             }
         });
     }

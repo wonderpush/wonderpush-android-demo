@@ -1,7 +1,8 @@
 package com.wonderpush.demo;
 
 import com.wonderpush.sdk.WonderPush;
-import com.wonderpush.sdk.WonderPushChannelPreference;
+import com.wonderpush.sdk.WonderPushChannel;
+import com.wonderpush.sdk.WonderPushChannelGroup;
 import com.wonderpush.sdk.WonderPushUserPreferences;
 
 import android.app.Application;
@@ -22,6 +23,7 @@ import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.content.LocalBroadcastManager;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class DemoApplication extends Application {
@@ -136,10 +138,11 @@ public class DemoApplication extends Application {
         WonderPush.putInstallationCustomProperties(null);
 
         WonderPushUserPreferences.setDefaultChannelId("default");
-        if (WonderPushUserPreferences.getChannelPreference("default") == null) {
+        if (WonderPushUserPreferences.getChannel("default") == null) {
             // The wrapping if serves to not modify existing preferences (as we don't store them elsewhere)
-            WonderPushUserPreferences.putChannelPreference(
-                    new WonderPushChannelPreference("default", null)
+            // Note: We mainly create the channel to ensure its existence for the PreferenceActivity
+            WonderPushUserPreferences.putChannel(
+                    new WonderPushChannel("default", null)
                             .setName("Default")
                             .setDescription("Miscellaneous notifications.")
             );
@@ -147,8 +150,8 @@ public class DemoApplication extends Application {
         // Here we declare a new channel
         // On Android O this would create it once and leave it unchanged (except for name and description)
         // On Android pre O, this would reset the user preferences stored in WonderPush
-        WonderPushUserPreferences.putChannelPreference(
-                new WonderPushChannelPreference("important", null)
+        WonderPushUserPreferences.putChannel(
+                new WonderPushChannel("important", null)
                         .setName("Important")
                         .setDescription("Important notifications you should not overlook.")
                         .setImportance(NotificationManagerCompat.IMPORTANCE_MAX)
