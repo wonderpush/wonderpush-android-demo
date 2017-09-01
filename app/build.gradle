@@ -1,14 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion '25.0.2'
+    compileSdkVersion 26
+    buildToolsVersion '26.0.1'
     defaultConfig {
         applicationId "com.wonderpush.demo"
-        minSdkVersion 9
-        targetSdkVersion 25
-        versionCode 5
-        versionName "2.2.1"
+        minSdkVersion 14
+        targetSdkVersion 26
+        versionCode 6
+        versionName "2.2.2"
         manifestPlaceholders = [
                 wonderpushNotificationIcon: '@drawable/notification_icon',
                 wonderpushDefaultActivity : '.MainActivity'
@@ -30,9 +30,7 @@ if (file('local.gradle').exists()) {
 }
 
 dependencies {
-    //compile fileTree(dir: 'libs', include: ['*.jar'])
-    //testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support:support-v4:25.3.1'
-    compile 'com.wonderpush:wonderpush-android-sdk:1.2.3.4-SNAPSHOT'
+    compile 'com.android.support:appcompat-v7:26.0.2'
+    compile 'com.android.support:support-compat:26.0.2'
+    compile 'com.wonderpush:wonderpush-android-sdk:1.2.4.1-SNAPSHOT'
 }
