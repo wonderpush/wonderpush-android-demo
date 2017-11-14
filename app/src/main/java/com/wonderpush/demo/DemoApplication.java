@@ -1,6 +1,8 @@
 package com.wonderpush.demo;
 
+import com.wonderpush.sdk.DeepLinkEvent;
 import com.wonderpush.sdk.WonderPush;
+import com.wonderpush.sdk.WonderPushAbstractDelegate;
 import com.wonderpush.sdk.WonderPushChannel;
 import com.wonderpush.sdk.WonderPushChannelGroup;
 import com.wonderpush.sdk.WonderPushUserPreferences;
@@ -21,6 +23,7 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -133,6 +136,20 @@ public class DemoApplication extends Application {
                 Toast.makeText(context, "Method " + method + " called with arg: " + arg, Toast.LENGTH_LONG).show();
             }
         }, catchallMethodIntentFilter);
+
+        WonderPush.setDelegate(new WonderPushAbstractDelegate() {
+            @Override
+            public String urlForDeepLink(DeepLinkEvent event) {
+                Log.d("WonderPushDemo", "handleNotificationOpenTargetUrl(" + event + ")");
+                Uri uri = Uri.parse(event.getUrl());
+                if ("toast".equals(uri.getScheme())) {
+                    // Let's handle toast: URLs with a toast, and no activity
+                    Toast.makeText(getApplicationContext(), "Handled deep-link: " + event.getUrl(), Toast.LENGTH_LONG).show();
+                    return null;
+                }
+                return super.urlForDeepLink(event);
+            }
+        });
 
         WonderPush.initialize(this);
         WonderPush.putInstallationCustomProperties(null);
