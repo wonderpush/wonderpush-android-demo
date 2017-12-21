@@ -23,6 +23,16 @@
     <string name="btnMainSetUserIdDialogOK">OK</string>
     <string name="btnMainSetUserIdDialogCancel">Annuler</string>
 
+    <string name="title_activity_tree_a1">Arbo A1</string>
+    <string name="title_activity_tree_a1_b1">Arbo A1 B1</string>
+    <string name="title_activity_tree_a1_b2">Arbo A1 B2</string>
+    <string name="title_activity_tree_a2">Arbo A2</string>
+    <string name="title_activity_tree_a2_b1">Arbo A2 B1</string>
+    <string name="title_activity_tree_a2_b2">Arbo A2 B2</string>
+    <string name="title_activity_orphan">Orpheline</string>
+    <string name="mnuMainOpenTreeA1Activity">Arbo A1 activité</string>
+    <string name="mnuMainOpenTreeA2Activity">Arbo A2 activité</string>
+    <string name="mnuMainOpenOrphanActivity">Activité orphenile</string>
     <string name="title_activity_preferences">Préférences</string>
 
 </resources>
