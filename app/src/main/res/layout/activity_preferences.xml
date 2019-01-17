@@ -7,121 +7,143 @@
     tools:context="com.wonderpush.demo.PreferencesActivity">
 
 
-    <RelativeLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/activity_horizontal_margin">
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/lblDefault"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Default"
-            android:textAppearance="@android:style/TextAppearance.Large" />
+            android:layout_margin="@dimen/activity_horizontal_margin">
 
-        <com.wonderpush.demo.TriStateCheckBox
-            android:id="@+id/triDefaultVibrate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/triDefaultSound"
-            android:text="Vibrate" />
-
-        <com.wonderpush.demo.TriStateCheckBox
-            android:id="@+id/triDefaultSound"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/lblDefault"
-            android:text="Sound" />
-
-        <com.wonderpush.demo.TriStateCheckBox
-            android:id="@+id/triDefaultVibrateSilentMode"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/triDefaultVibrate"
-            android:text="Vibrate in silent mode" />
-
-        <TextView
-            android:id="@+id/lblDefaultColor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/triDefaultVibrateSilentMode"
-            android:text="Color"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textColor="?android:attr/textColorPrimary" />
-
-        <RadioGroup
-            android:id="@+id/rdgDefaultColor"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/triDefaultVibrateSilentMode"
-            android:orientation="vertical">
-
-            <RadioButton
-                android:id="@+id/radDefaultColorAsIs"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:tag="null"
-                android:text="As is" />
-
-            <RadioButton
-                android:id="@+id/radDefaultColorNone"
+            <TextView
+                android:id="@+id/lblUserConsent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:tag="#00000000"
-                android:text="None" />
+                android:text="User consent"
+                android:textAppearance="@android:style/TextAppearance.Large" />
 
-            <RadioButton
-                android:id="@+id/radDefaultColorDefault"
-                android:layout_width="wrap_content"
+            <CheckBox
+                android:id="@+id/chkRequiresUserConsent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:tag="default"
-                android:text="Default" />
+                android:layout_below="@+id/lblUserConsent"
+                android:text="Requires user consent" />
 
-            <RadioButton
-                android:id="@+id/radDefaultColorRed"
-                android:layout_width="wrap_content"
+            <CheckBox
+                android:id="@+id/chkUserConsent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:tag="#FF0000"
-                android:text="Red" />
+                android:layout_below="@id/chkRequiresUserConsent"
+                android:text="Provide user consent" />
 
-            <RadioButton
-                android:id="@+id/radDefaultColorBlue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:tag="#0000FF"
-                android:text="Blue" />
+        </RelativeLayout>
 
-        </RadioGroup>
-
-        <CheckBox
-            android:id="@+id/checkBox4"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/lblDefaultColor"
-            android:layout_marginLeft="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="14dp"
-            android:checked="true"
-            android:text="CheckBox" />
+            android:layout_margin="@dimen/activity_horizontal_margin">
 
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/lblDefault"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Default"
+                android:textAppearance="@android:style/TextAppearance.Large" />
+
+            <com.wonderpush.demo.TriStateCheckBox
+                android:id="@+id/triDefaultVibrate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/triDefaultSound"
+                android:text="Vibrate" />
+
+            <com.wonderpush.demo.TriStateCheckBox
+                android:id="@+id/triDefaultSound"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/lblDefault"
+                android:text="Sound" />
+
+            <com.wonderpush.demo.TriStateCheckBox
+                android:id="@+id/triDefaultVibrateSilentMode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/triDefaultVibrate"
+                android:text="Vibrate in silent mode" />
+
+            <TextView
+                android:id="@+id/lblDefaultColor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/triDefaultVibrateSilentMode"
+                android:text="Color"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="?android:attr/textColorPrimary" />
+
+            <RadioGroup
+                android:id="@+id/rdgDefaultColor"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/triDefaultVibrateSilentMode"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/radDefaultColorAsIs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:tag="null"
+                    android:text="As is" />
+
+                <RadioButton
+                    android:id="@+id/radDefaultColorNone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:tag="#00000000"
+                    android:text="None" />
+
+                <RadioButton
+                    android:id="@+id/radDefaultColorDefault"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:tag="default"
+                    android:text="Default" />
+
+                <RadioButton
+                    android:id="@+id/radDefaultColorRed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:tag="#FF0000"
+                    android:text="Red" />
+
+                <RadioButton
+                    android:id="@+id/radDefaultColorBlue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:tag="#0000FF"
+                    android:text="Blue" />
+
+            </RadioGroup>
+
+        </RelativeLayout>
+
+    </LinearLayout>
 </ScrollView>

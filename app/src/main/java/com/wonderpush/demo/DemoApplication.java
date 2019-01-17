@@ -31,6 +31,32 @@ import java.util.Random;
 
 public class DemoApplication extends Application {
 
+    private final String SHARED_PREF_FILE = "wonderpushdemo";
+    private final String SHARED_PREF_KEY_REQUIRES_USER_CONSENT = "requiresUserConsent";
+    private final boolean SHARED_PREF_DEFAULT_REQUIRES_USER_CONSENT = true;
+
+    private static DemoApplication singleton = null;
+
+    public static DemoApplication getInstance() {
+        return singleton;
+    }
+
+    public DemoApplication() {
+        singleton = this;
+    }
+
+    public boolean getRequiresUserConsent() {
+        return this.getSharedPreferences(SHARED_PREF_FILE, 0)
+                .getBoolean(SHARED_PREF_KEY_REQUIRES_USER_CONSENT, SHARED_PREF_DEFAULT_REQUIRES_USER_CONSENT);
+    }
+
+    public void setRequiresUserConsent(boolean value) {
+        this.getSharedPreferences(SHARED_PREF_FILE, 0)
+                .edit()
+                .putBoolean(SHARED_PREF_KEY_REQUIRES_USER_CONSENT, value)
+                .apply();
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -151,8 +177,8 @@ public class DemoApplication extends Application {
             }
         });
 
+        WonderPush.setRequiresUserConsent(this.getRequiresUserConsent());
         WonderPush.initialize(this);
-        WonderPush.putInstallationCustomProperties(null);
 
         WonderPushUserPreferences.setDefaultChannelId("default");
         if (WonderPushUserPreferences.getChannel("default") == null) {

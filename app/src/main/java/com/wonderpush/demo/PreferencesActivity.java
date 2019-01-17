@@ -4,14 +4,19 @@ import android.graphics.Color;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.wonderpush.sdk.WonderPush;
 import com.wonderpush.sdk.WonderPushChannel;
 import com.wonderpush.sdk.WonderPushUserPreferences;
 
 public class PreferencesActivity extends AppCompatActivity {
 
+    CheckBox chkRequiresUserConsent;
+    CheckBox chkUserConsent;
     TriStateCheckBox triDefaultSound;
     TriStateCheckBox triDefaultVibrate;
     TriStateCheckBox triDefaultVibrateSilentMode;
@@ -26,6 +31,34 @@ public class PreferencesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preferences);
+
+        //
+        // User consent
+        //
+
+        chkRequiresUserConsent = (CheckBox) findViewById(R.id.chkRequiresUserConsent);
+        chkUserConsent = (CheckBox) findViewById(R.id.chkUserConsent);
+
+        chkRequiresUserConsent.setChecked(DemoApplication.getInstance().getRequiresUserConsent());
+        chkUserConsent.setChecked(WonderPush.getUserConsent());
+
+        chkRequiresUserConsent.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                DemoApplication.getInstance().setRequiresUserConsent(isChecked);
+                WonderPush.setRequiresUserConsent(isChecked);
+            }
+        });
+        chkUserConsent.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                WonderPush.setUserConsent(isChecked);
+            }
+        });
+
+        //
+        // Notification channels
+        //
 
         triDefaultSound = (TriStateCheckBox) findViewById(R.id.triDefaultSound);
         triDefaultVibrate = (TriStateCheckBox) findViewById(R.id.triDefaultVibrate);
