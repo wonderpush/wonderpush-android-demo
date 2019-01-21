@@ -1,9 +1,11 @@
 package com.wonderpush.demo;
 
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
@@ -53,6 +55,41 @@ public class PreferencesActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 WonderPush.setUserConsent(isChecked);
+            }
+        });
+
+        //
+        // Privacy
+        //
+
+        findViewById(R.id.btnDownload).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AsyncTask<Boolean, Boolean, Boolean>() {
+                    @Override
+                    protected Boolean doInBackground(Boolean... voids) {
+                        WonderPush.shareExport();
+                        return Boolean.TRUE;
+                    }
+                }.execute();
+            }
+        });
+        findViewById(R.id.btnClearEvents).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                WonderPush.clearInstallationEvents();
+            }
+        });
+        findViewById(R.id.btnClearPreferences).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                WonderPush.clearInstallationData();
+            }
+        });
+        findViewById(R.id.btnClearAll).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                WonderPush.clearAll();
             }
         });
 

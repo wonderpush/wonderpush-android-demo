@@ -47,6 +47,49 @@
             android:layout_marginHorizontal="@dimen/activity_horizontal_margin">
 
             <TextView
+                android:id="@+id/lblPrivacy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Privacy"
+                android:textAppearance="@android:style/TextAppearance.Large" />
+
+            <Button
+                android:id="@+id/btnDownload"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/lblPrivacy"
+                android:text="Download your data" />
+
+            <Button
+                android:id="@+id/btnClearEvents"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btnDownload"
+                android:text="Clear events" />
+
+            <Button
+                android:id="@+id/btnClearPreferences"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btnClearEvents"
+                android:text="Clear preferences" />
+
+            <Button
+                android:id="@+id/btnClearAll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btnClearPreferences"
+                android:text="Clear all" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/activity_vertical_margin"
+            android:layout_marginHorizontal="@dimen/activity_horizontal_margin">
+
+            <TextView
                 android:id="@+id/lblDefault"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
