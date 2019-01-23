@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.main, menu);
         MenuItem toggle = menu.findItem(R.id.mnuMainToggleNotificationEnabled);
         if (toggle != null) {
-            toggle.setChecked(WonderPush.getNotificationEnabled());
+            toggle.setChecked(WonderPush.isSubscribedToNotifications());
         }
         return super.onCreateOptionsMenu(menu);
     }
@@ -132,12 +132,16 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.mnuMainReadInstallationCustom) {
-            Toast.makeText(this, String.valueOf(WonderPush.getInstallationCustomProperties()), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, String.valueOf(WonderPush.getProperties()), Toast.LENGTH_LONG).show();
         } else if (id == R.id.mnuMainOpenChildActivity) {
             startActivity(new Intent().setClass(this, ChildActivity.class));
         } else if (id == R.id.mnuMainToggleNotificationEnabled) {
-            WonderPush.setNotificationEnabled(!WonderPush.getNotificationEnabled());
-            item.setChecked(WonderPush.getNotificationEnabled());
+            if (WonderPush.isSubscribedToNotifications()) {
+                WonderPush.unsubscribeFromNotifications();
+            } else {
+                WonderPush.subscribeToNotifications();
+            }
+            item.setChecked(WonderPush.isSubscribedToNotifications());
         } else if (id == R.id.mnuMainSetUserId) {
             final EditText txtUserId = new EditText(this);
             txtUserId.setText(WonderPush.getUserId());
@@ -245,7 +249,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void btnGenderMale_onClick(View button) {
         try {
-            WonderPush.putInstallationCustomProperties(new JSONObject("{\"string_gender\":\"male\"}}"));
+            WonderPush.putProperties(new JSONObject("{\"string_gender\":\"male\"}}"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -253,7 +257,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void btnGenderFemale_onClick(View button) {
         try {
-            WonderPush.putInstallationCustomProperties(new JSONObject("{\"string_gender\":\"female\"}}"));
+            WonderPush.putProperties(new JSONObject("{\"string_gender\":\"female\"}}"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -261,7 +265,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void btnGenderBoth_onClick(View button) {
         try {
-            WonderPush.putInstallationCustomProperties(new JSONObject("{\"string_gender\":[\"male\",\"female\"]}}"));
+            WonderPush.putProperties(new JSONObject("{\"string_gender\":[\"male\",\"female\"]}}"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -269,7 +273,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void btnGenderRemove_onClick(View button) {
         try {
-            WonderPush.putInstallationCustomProperties(new JSONObject("{\"string_gender\":null}"));
+            WonderPush.putProperties(new JSONObject("{\"string_gender\":null}"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
