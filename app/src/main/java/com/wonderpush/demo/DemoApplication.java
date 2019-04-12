@@ -115,7 +115,7 @@ public class DemoApplication extends Application {
                         openIntent.putExtras(intent);
                         PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, openIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_ONE_SHOT);
 
-                        NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext())
+                        NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), "default")
                                 .setAutoCancel(true)
                                 .setSmallIcon(R.drawable.notification_icon)
                                 .setContentTitle(getPackageManager().getApplicationLabel(getApplicationInfo()) + " manual data notif")
@@ -177,8 +177,8 @@ public class DemoApplication extends Application {
             }
         });
 
+        // Note that we set this to true in the BuildConfig to possibly set it to false now, which is a valid pattern
         WonderPush.setRequiresUserConsent(this.getRequiresUserConsent());
-        WonderPush.initialize(this);
 
         WonderPushUserPreferences.setDefaultChannelId("default");
         if (WonderPushUserPreferences.getChannel("default") == null) {

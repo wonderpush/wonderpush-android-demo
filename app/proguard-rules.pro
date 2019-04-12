@@ -17,3 +17,10 @@
 #}
 
 -keepattributes SourceFile,LineNumberTable,Signature
+
+-keepnames class com.wonderpush.sdk.** {
+    *;
+}
+-keepnames interface com.wonderpush.sdk.** {
+    *;
+}

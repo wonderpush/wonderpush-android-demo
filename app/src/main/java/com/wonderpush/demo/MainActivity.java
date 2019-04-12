@@ -75,11 +75,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    protected void onNewIntent(Intent intent) {
-        WonderPush.showPotentialNotification(this, intent);
-    }
-
     private boolean checkMockLocationAndAlert() {
         if (!mockLocationAvailable) {
             new AlertDialog.Builder(this)

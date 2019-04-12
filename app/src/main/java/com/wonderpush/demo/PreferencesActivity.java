@@ -68,7 +68,7 @@ public class PreferencesActivity extends AppCompatActivity {
                 new AsyncTask<Boolean, Boolean, Boolean>() {
                     @Override
                     protected Boolean doInBackground(Boolean... voids) {
-                        WonderPush.shareExport();
+                        WonderPush.downloadAllData();
                         return Boolean.TRUE;
                     }
                 }.execute();
@@ -77,13 +77,13 @@ public class PreferencesActivity extends AppCompatActivity {
         findViewById(R.id.btnClearEvents).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                WonderPush.clearInstallationEvents();
+                WonderPush.clearEventsHistory();
             }
         });
         findViewById(R.id.btnClearPreferences).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                WonderPush.clearInstallationData();
+                WonderPush.clearPreferences();
             }
         });
         findViewById(R.id.btnClearAll).setOnClickListener(new View.OnClickListener() {

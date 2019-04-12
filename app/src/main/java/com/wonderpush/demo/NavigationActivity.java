@@ -32,7 +32,6 @@ public class NavigationActivity extends AppCompatActivity {
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        WonderPush.showPotentialNotification(this, intent);
         refreshIntent(intent);
     }
 
