@@ -1,6 +1,7 @@
 package com.wonderpush.demo;
 
 import java.lang.reflect.Method;
+import java.util.Set;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -272,6 +273,47 @@ public class MainActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    public void btnTagGet_onClick(View button) {
+        Set<String> tags = WonderPush.getTags();
+        Toast.makeText(this, tags.toString(), Toast.LENGTH_LONG).show();
+    }
+
+    public void btnTagClear_onClick(View button) {
+        WonderPush.removeAllTags();
+    }
+
+    public void btnTagAddFooBar_onClick(View button) {
+        WonderPush.addTag("foo", "bar");
+    }
+
+    public void btnTagRemoveFooBar_onClick(View button) {
+        WonderPush.removeTag("foo", "bar");
+    }
+
+    public void btnTagAddFoo_onClick(View button) {
+        WonderPush.addTag("foo");
+    }
+
+    public void btnTagRemoveFoo_onClick(View button) {
+        WonderPush.removeTag("foo");
+    }
+
+    public void btnTagHasFoo_onClick(View button) {
+        Toast.makeText(this, WonderPush.hasTag("foo") ? "YES" : "NO", Toast.LENGTH_LONG).show();
+    }
+
+    public void btnTagAddBar_onClick(View button) {
+        WonderPush.addTag("bar");
+    }
+
+    public void btnTagRemoveBar_onClick(View button) {
+        WonderPush.removeTag("bar");
+    }
+
+    public void btnTagHasBar_onClick(View button) {
+        Toast.makeText(this, WonderPush.hasTag("bar") ? "YES" : "NO", Toast.LENGTH_LONG).show();
     }
 
 }

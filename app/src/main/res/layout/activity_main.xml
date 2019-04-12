@@ -122,6 +122,77 @@
         android:onClick="btnGenderRemove_onClick"
         android:text="GENDER: null" />
 
-  </LinearLayout>
+    <Button
+        android:id="@+id/btnTagClear"
+        style="@style/BigButton.A"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="btnTagClear_onClick"
+        android:text="TAG: CLEAR" />
+    <Button
+        android:id="@+id/btnTagGet"
+        style="@style/BigButton.A"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="btnTagGet_onClick"
+        android:text="TAG: GET" />
+    <Button
+        android:id="@+id/btnTagAddFooBar"
+        style="@style/BigButton.A"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="btnTagAddFooBar_onClick"
+        android:text="TAG: +foo +bar" />
+    <Button
+        android:id="@+id/btnTagRemoveFooBar"
+        style="@style/BigButton.A"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="btnTagRemoveFooBar_onClick"
+        android:text="TAG: -foo -bar" />
+    <Button
+        android:id="@+id/btnTagAddFoo"
+        style="@style/BigButton.A"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="btnTagAddFoo_onClick"
+        android:text="TAG: +foo" />
+    <Button
+        android:id="@+id/btnTagRemoveFoo"
+        style="@style/BigButton.A"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="btnTagRemoveFoo_onClick"
+        android:text="TAG: -foo" />
+    <Button
+        android:id="@+id/btnTagHasFoo"
+        style="@style/BigButton.A"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="btnTagHasFoo_onClick"
+        android:text="TAG: foo?" />
+    <Button
+        android:id="@+id/btnTagAddBar"
+        style="@style/BigButton.A"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="btnTagAddBar_onClick"
+        android:text="TAG: +bar" />
+    <Button
+        android:id="@+id/btnTagRemoveBar"
+        style="@style/BigButton.A"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="btnTagRemoveBar_onClick"
+        android:text="TAG: -bar" />
+    <Button
+        android:id="@+id/btnTagHasBar"
+        style="@style/BigButton.A"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="btnTagHasBar_onClick"
+        android:text="TAG: bar?" />
+
+    </LinearLayout>
 
 </ScrollView>
