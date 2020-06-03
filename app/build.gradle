@@ -1,24 +1,33 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.huawei.agconnect'
 
 android {
     compileSdkVersion 28
     buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId "com.wonderpush.demo"
-        minSdkVersion 14
+        minSdkVersion 17
         targetSdkVersion 28
         versionCode 6
         versionName "2.2.2"
         buildConfigField 'String', 'WONDERPUSH_CLIENT_ID', '"7524c8a317c1794c0b23895dce3a3314d6a24105"'
         buildConfigField 'String', 'WONDERPUSH_CLIENT_SECRET', '"b43a2d0fbdb54d24332b4d70736954eab5d24d29012b18ef6d214ff0f51e7901"'
         buildConfigField 'String', 'WONDERPUSH_SENDER_ID', '"1023997258979"' // WonderPush Sender ID
+        buildConfigField 'String', 'WONDERPUSH_HCM_APP_ID', '"102131397"'
         buildConfigField 'boolean', 'WONDERPUSH_LOGGING', 'true'
         buildConfigField 'boolean', 'WONDERPUSH_REQUIRES_USER_CONSENT', 'false'
+    }
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
     }
     lintOptions {
         disable 'MockLocation'
     }
     buildTypes {
+        debug {
+            minifyEnabled false
+        }
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -33,5 +42,5 @@ if (file('local.gradle').exists()) {
 dependencies {
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support:support-v4:28.0.0' // bump dependency from wonderpush-android-sdk
-    implementation 'com.wonderpush:wonderpush-android-sdk:3.+'
+    implementation 'com.wonderpush:wonderpush-android-sdk:3.3.1-SNAPSHOT'
 }

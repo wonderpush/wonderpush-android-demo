@@ -33,7 +33,7 @@ public class DemoApplication extends Application {
 
     private final String SHARED_PREF_FILE = "wonderpushdemo";
     private final String SHARED_PREF_KEY_REQUIRES_USER_CONSENT = "requiresUserConsent";
-    private final boolean SHARED_PREF_DEFAULT_REQUIRES_USER_CONSENT = true;
+    private final boolean SHARED_PREF_DEFAULT_REQUIRES_USER_CONSENT = false;
 
     private static DemoApplication singleton = null;
 
