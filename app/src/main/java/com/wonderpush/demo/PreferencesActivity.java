@@ -89,7 +89,7 @@ public class PreferencesActivity extends AppCompatActivity {
         findViewById(R.id.btnClearAll).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                WonderPush.clearAll();
+                WonderPush.clearAllData();
             }
         });
 
