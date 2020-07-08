@@ -4,29 +4,25 @@ import com.wonderpush.sdk.DeepLinkEvent;
 import com.wonderpush.sdk.WonderPush;
 import com.wonderpush.sdk.WonderPushAbstractDelegate;
 import com.wonderpush.sdk.WonderPushChannel;
-import com.wonderpush.sdk.WonderPushChannelGroup;
 import com.wonderpush.sdk.WonderPushUserPreferences;
 
 import android.app.Application;
-import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.res.Resources;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.PatternMatcher;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationManagerCompat;
-import android.support.v4.app.TaskStackBuilder;
-import android.support.v4.content.LocalBroadcastManager;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+import androidx.core.app.TaskStackBuilder;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import android.util.Log;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 public class DemoApplication extends Application {

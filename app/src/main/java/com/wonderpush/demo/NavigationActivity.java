@@ -3,9 +3,7 @@ package com.wonderpush.demo;
 import java.lang.reflect.Field;
 import java.util.Arrays;
 
-import com.wonderpush.sdk.WonderPush;
-
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.content.Intent;
 import android.os.Bundle;
