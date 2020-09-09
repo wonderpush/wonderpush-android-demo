@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name" translatable="false">WonderPush Demo</string>
+    <string name="app_name" translatable="false">WonderPush InApp Demo</string>
 
     <string name="mnuMainReadInstallationCustom">Get install custom</string>
     <string name="mnuMainOpenChildActivity">Child activity</string>
