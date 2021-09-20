@@ -3,13 +3,13 @@ package com.wonderpush.demo;
 import java.lang.reflect.Field;
 import java.util.Arrays;
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.app.Activity;
 import android.util.Log;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
-public class NavigationActivity extends AppCompatActivity {
+public class NavigationActivity extends Activity {
 
     TextView txtNavigationText;
 

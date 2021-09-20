@@ -7,7 +7,10 @@ import com.wonderpush.sdk.WonderPushChannel;
 import com.wonderpush.sdk.WonderPushUserPreferences;
 
 import android.app.Application;
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -15,10 +18,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.PatternMatcher;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
-import androidx.core.app.TaskStackBuilder;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import android.util.Log;
 import android.widget.Toast;
@@ -93,6 +94,7 @@ public class DemoApplication extends Application {
 
         // Example data notification handled by application logic
         LocalBroadcastManager.getInstance(this).registerReceiver(new BroadcastReceiver() {
+            @SuppressWarnings("deprecation") // for new Notification.Builder(Context), guarded by SDK version test
             @Override
             public void onReceive(Context context, Intent intent) {
                 if (WonderPush.INTENT_NOTIFICATION_WILL_OPEN_EXTRA_NOTIFICATION_TYPE_DATA.equals(
@@ -111,12 +113,18 @@ public class DemoApplication extends Application {
                         openIntent.putExtras(intent);
                         PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, openIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_ONE_SHOT);
 
-                        NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), "default")
+                        Notification.Builder builder;
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            builder = new Notification.Builder(getApplicationContext(), "default");
+                        } else {
+                            builder = new Notification.Builder(getApplicationContext());
+                        }
+                        builder
                                 .setAutoCancel(true)
                                 .setSmallIcon(R.drawable.notification_icon)
                                 .setContentTitle(getPackageManager().getApplicationLabel(getApplicationInfo()) + " manual data notif")
                                 .setContentText(message)
-                                .setStyle(new NotificationCompat.BigTextStyle()
+                                .setStyle(new Notification.BigTextStyle()
                                         .bigText(message))
                                 .setContentIntent(pendingIntent);
                         android.app.NotificationManager mNotificationManager = (android.app.NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -193,7 +201,7 @@ public class DemoApplication extends Application {
                 new WonderPushChannel("important", null)
                         .setName("Important")
                         .setDescription("Important notifications you should not overlook.")
-                        .setImportance(NotificationManagerCompat.IMPORTANCE_MAX)
+                        .setImportance(NotificationManager.IMPORTANCE_MAX)
                         .setColor(Color.RED)
                         .setLights(true)
                         .setLightColor(Color.RED)

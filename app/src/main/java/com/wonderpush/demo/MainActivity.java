@@ -6,6 +6,7 @@ import java.util.Set;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -18,9 +19,7 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
-import androidx.core.app.ActivityCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-import androidx.appcompat.app.AppCompatActivity;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
@@ -33,7 +32,7 @@ import android.widget.Toast;
 
 import com.wonderpush.sdk.WonderPush;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     private final static String MOCK_LOCATION_PROVIDER = "wonderpush-demo";
     private final static float MOCK_LOCATION_EIFFEL_TOWER_LAT = 48.858222f;
@@ -49,23 +48,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if (WonderPush.isReady()) {
-            TextView label = (TextView) findViewById(R.id.lblDescription);
-            label.setText(R.string.description);
-        } else {
-            LocalBroadcastManager.getInstance(this).registerReceiver(new BroadcastReceiver() {
-                @Override
-                public void onReceive(Context context, Intent intent) {
-                    TextView label = (TextView) findViewById(R.id.lblDescription);
-                    label.setText(R.string.description);
-                }
-            }, new IntentFilter(WonderPush.INTENT_INTIALIZED));
-        }
+        TextView label = (TextView) findViewById(R.id.lblDescription);
+        label.setText(R.string.description);
 
         mockLocationAvailable = checkCallingOrSelfPermission("android.Manifest.permission.ACCESS_MOCK_LOCATION") == PackageManager.PERMISSION_GRANTED;
         if (checkCallingOrSelfPermission("android.Manifest.permission.ACCESS_COARSE_LOCATION") != PackageManager.PERMISSION_GRANTED) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                ActivityCompat.requestPermissions(this, new String[]{
+                this.requestPermissions(new String[]{
                         android.Manifest.permission.ACCESS_COARSE_LOCATION,
                         android.Manifest.permission.ACCESS_FINE_LOCATION
                 }, 0);
@@ -141,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
             txtUserId.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
             txtUserId.setSingleLine();
             txtUserId.setSelectAllOnFocus(true);
-            new androidx.appcompat.app.AlertDialog.Builder(this)
+            new AlertDialog.Builder(this)
                     .setTitle(R.string.titleMainSetUserIdDialog)
                     .setView(txtUserId)
                     .setPositiveButton(R.string.btnMainSetUserIdDialogOK, new DialogInterface.OnClickListener() {

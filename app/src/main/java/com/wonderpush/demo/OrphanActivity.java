@@ -1,9 +1,9 @@
 package com.wonderpush.demo;
 
+import android.app.Activity;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 
-public class OrphanActivity extends AppCompatActivity {
+public class OrphanActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

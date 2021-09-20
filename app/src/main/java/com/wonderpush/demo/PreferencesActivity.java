@@ -1,9 +1,9 @@
 package com.wonderpush.demo;
 
+import android.app.Activity;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import androidx.annotation.IdRes;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
@@ -15,7 +15,7 @@ import com.wonderpush.sdk.WonderPush;
 import com.wonderpush.sdk.WonderPushChannel;
 import com.wonderpush.sdk.WonderPushUserPreferences;
 
-public class PreferencesActivity extends AppCompatActivity {
+public class PreferencesActivity extends Activity {
 
     CheckBox chkRequiresUserConsent;
     CheckBox chkUserConsent;

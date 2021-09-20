@@ -1,12 +1,12 @@
 package com.wonderpush.demo;
 
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 
-public class TreeA2Activity extends AppCompatActivity {
+public class TreeA2Activity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

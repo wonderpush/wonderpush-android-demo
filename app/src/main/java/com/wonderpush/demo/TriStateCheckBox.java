@@ -1,10 +1,10 @@
 package com.wonderpush.demo;
 
 import android.content.Context;
-import androidx.appcompat.widget.AppCompatCheckBox;
 import android.util.AttributeSet;
+import android.widget.CheckBox;
 
-public class TriStateCheckBox extends AppCompatCheckBox {
+public class TriStateCheckBox extends CheckBox {
 
     /**
      * Interface definition for a callback to be invoked when the checked state

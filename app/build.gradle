@@ -40,7 +40,6 @@ if (file('local.gradle').exists()) {
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
 
     // Use published versions of WonderPush SDK modules
