@@ -67,22 +67,6 @@
         android:text="@string/btnPurchase" />
 
     <Button
-        android:id="@+id/btnNearEiffelTower"
-        style="@style/BigButton.G"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="btnNearEiffelTower_onClick"
-        android:text="@string/btnNearEiffelTower" />
-
-    <Button
-        android:id="@+id/btnNearLouvre"
-        style="@style/BigButton.H"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="btnNearLouvre_onClick"
-        android:text="@string/btnNearLouvre" />
-
-    <Button
         android:id="@+id/btnInactiveUser"
         style="@style/BigButton.I"
         android:layout_width="match_parent"

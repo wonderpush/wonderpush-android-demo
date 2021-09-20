@@ -7,9 +7,6 @@
     <string name="mnuMainOpenChildActivity">Child activity</string>
     <string name="mnuMainToggleNotificationEnabled">Enable notifications</string>
     <string name="mnuMainSetUserId">Set user id</string>
-    <string name="noMockLocationAlertTitle">Cannot simulate mock locations</string>
-    <string name="noMockLocationAlertMessage">In order to simulate geographical event, please do:\n- Settings > Applications > Development\n- Check Allow mock locations</string>
-    <string name="noMockLocationAlertOkButton">OK</string>
 
     <string name="initializing">CONNECTING TO WONDERPUSH&#8230;</string>
     <string name="description">SIMULATE AN EVENT BELOW</string>
@@ -20,8 +17,6 @@
     <string name="btnLike" translatable="false">LIKE</string>
     <string name="btnAddToCart" translatable="false">ADD TO CART</string>
     <string name="btnPurchase" translatable="false">PURCHASE</string>
-    <string name="btnNearEiffelTower" translatable="false">NEAR EIFFEL TWR.</string>
-    <string name="btnNearLouvre" translatable="false">NEAR LOUVRE</string>
     <string name="btnInactiveUser" translatable="false">INACTIVE USER</string>
 
     <string name="title_activity_child">Child activity</string>
