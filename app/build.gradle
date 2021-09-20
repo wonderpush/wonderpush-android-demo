@@ -6,7 +6,7 @@ android {
     buildToolsVersion '29.0.3'
     defaultConfig {
         applicationId "com.wonderpush.demo"
-        minSdkVersion 17
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode 6
         versionName "2.2.2"
@@ -42,10 +42,22 @@ if (file('local.gradle').exists()) {
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
-    // bump dependency from wonderpush-android-sdk
-    implementation 'com.wonderpush:wonderpush-android-sdk:3.4.0'
-    implementation 'com.wonderpush:wonderpush-android-sdk-fcm:1.0.0'
-    implementation 'com.wonderpush:wonderpush-android-sdk-hcm:1.0.0'
+
+    // Use published versions of WonderPush SDK modules
+    //implementation 'com.wonderpush:wonderpush-android-sdk:4.0.8'
+    //implementation 'com.wonderpush:wonderpush-android-sdk-fcm:1.0.1'
+    //implementation 'com.wonderpush:wonderpush-android-sdk-hcm:1.0.3'
+    // Use local development versions of WonderPush SDK modules
+    implementation project(":sdk")
+    implementation(project(":fcm")) {
+        exclude group: 'com.wonderpush', module: 'wonderpush-android-sdk'
+    }
+    implementation(project(":hcm")) {
+        exclude group: 'com.wonderpush', module: 'wonderpush-android-sdk'
+    }
+
+    // Test against the latest Firebase modules
+    implementation platform('com.google.firebase:firebase-bom:28.4.1')
 }
 
 tasks.withType(JavaCompile) {

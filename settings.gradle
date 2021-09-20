@@ -1,1 +1,7 @@
 include ':app'
+include ':sdk'
+project(':sdk').projectDir = file('../wonderpush-android-sdk/sdk')
+include ':fcm'
+project(':fcm').projectDir = file('../wonderpush-android-sdk/fcm')
+include ':hcm'
+project(':hcm').projectDir = file('../wonderpush-android-sdk/hcm')
