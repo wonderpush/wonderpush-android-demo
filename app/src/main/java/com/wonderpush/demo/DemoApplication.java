@@ -6,6 +6,7 @@ import com.wonderpush.sdk.WonderPushAbstractDelegate;
 import com.wonderpush.sdk.WonderPushChannel;
 import com.wonderpush.sdk.WonderPushUserPreferences;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -114,7 +115,12 @@ public class DemoApplication extends Application {
                         openIntent.putExtras(pushNotif);
                         // Copy the local intent extras so that the WonderPush SDK can track the click
                         openIntent.putExtras(intent);
-                        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, openIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_ONE_SHOT);
+                        int flagImmutable = 0;
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                            flagImmutable = PendingIntent.FLAG_IMMUTABLE;
+                        }
+                        @SuppressLint("UnspecifiedImmutableFlag")
+                        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, openIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_ONE_SHOT | flagImmutable);
 
                         Notification.Builder builder;
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
