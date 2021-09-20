@@ -2,7 +2,7 @@
 
 buildscript {
     repositories {
-        jcenter()
+        mavenCentral()
         google()
         maven {
             url 'http://developer.huawei.com/repo/'
@@ -23,7 +23,6 @@ if (file('local.gradle').exists()) {
 
 allprojects {
     repositories {
-        jcenter()
         mavenCentral()
         maven {
             url 'https://maven.google.com'
