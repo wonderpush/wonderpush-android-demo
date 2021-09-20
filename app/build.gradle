@@ -57,6 +57,7 @@ dependencies {
 
     // Test against the latest Firebase modules
     implementation platform('com.google.firebase:firebase-bom:28.4.1')
+    implementation 'com.huawei.hms:push:6.1.0.300'
 }
 
 tasks.withType(JavaCompile) {
