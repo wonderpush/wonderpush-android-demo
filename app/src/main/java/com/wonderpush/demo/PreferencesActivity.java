@@ -2,7 +2,6 @@ package com.wonderpush.demo;
 
 import android.app.Activity;
 import android.graphics.Color;
-import android.os.AsyncTask;
 import androidx.annotation.IdRes;
 import android.os.Bundle;
 import android.view.View;
@@ -65,13 +64,7 @@ public class PreferencesActivity extends Activity {
         findViewById(R.id.btnDownload).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new AsyncTask<Boolean, Boolean, Boolean>() {
-                    @Override
-                    protected Boolean doInBackground(Boolean... voids) {
-                        WonderPush.downloadAllData();
-                        return Boolean.TRUE;
-                    }
-                }.execute();
+                new Thread(WonderPush::downloadAllData).start();
             }
         });
         findViewById(R.id.btnClearEvents).setOnClickListener(new View.OnClickListener() {
