@@ -7,6 +7,7 @@ import com.wonderpush.sdk.WonderPushChannel;
 import com.wonderpush.sdk.WonderPushUserPreferences;
 
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.app.Application;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -58,6 +59,23 @@ public class DemoApplication extends Application {
                 .apply();
     }
 
+    @SuppressWarnings("deprecation")
+    private Notification.Builder getNotificationBuilder() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            return new Notification.Builder(getApplicationContext(), "default");
+        } else {
+            return new Notification.Builder(getApplicationContext());
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.M)
+    private int getFlagImmutable() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            return PendingIntent.FLAG_IMMUTABLE;
+        }
+        return 0;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -98,7 +116,6 @@ public class DemoApplication extends Application {
 
         // Example data notification handled by application logic
         LocalBroadcastManager.getInstance(this).registerReceiver(new BroadcastReceiver() {
-            @SuppressWarnings("deprecation") // for new Notification.Builder(Context), guarded by SDK version test
             @Override
             public void onReceive(Context context, Intent intent) {
                 if (WonderPush.INTENT_NOTIFICATION_WILL_OPEN_EXTRA_NOTIFICATION_TYPE_DATA.equals(
@@ -115,20 +132,9 @@ public class DemoApplication extends Application {
                         openIntent.putExtras(pushNotif);
                         // Copy the local intent extras so that the WonderPush SDK can track the click
                         openIntent.putExtras(intent);
-                        int flagImmutable = 0;
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                            flagImmutable = PendingIntent.FLAG_IMMUTABLE;
-                        }
-                        @SuppressLint("UnspecifiedImmutableFlag")
-                        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, openIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_ONE_SHOT | flagImmutable);
+                        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, openIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_ONE_SHOT | getFlagImmutable());
 
-                        Notification.Builder builder;
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                            builder = new Notification.Builder(getApplicationContext(), "default");
-                        } else {
-                            builder = new Notification.Builder(getApplicationContext());
-                        }
-                        builder
+                        Notification.Builder builder = getNotificationBuilder()
                                 .setAutoCancel(true)
                                 .setSmallIcon(R.drawable.notification_icon)
                                 .setContentTitle(getPackageManager().getApplicationLabel(getApplicationInfo()) + " manual data notif")
