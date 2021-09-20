@@ -14,6 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
+            android:exported="true"
             android:name=".MainActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/app_name">
@@ -63,6 +64,7 @@
             </intent-filter>
         </activity>
         <activity
+            android:exported="true"
             android:name=".ChildActivity"
             android:label="@string/title_activity_child"
             android:parentActivityName=".MainActivity">
@@ -71,6 +73,7 @@
                 android:value="com.wonderpush.demo.MainActivity" />
         </activity>
         <activity
+            android:exported="true"
             android:name=".NavigationActivity"
             android:label="@string/title_activity_navigation"
             android:parentActivityName=".MainActivity">
@@ -90,6 +93,7 @@
             </intent-filter>
         </activity>
         <activity
+            android:exported="true"
             android:name=".TreeA1Activity"
             android:label="@string/title_activity_tree_a1"
             android:parentActivityName=".MainActivity">
@@ -110,6 +114,7 @@
             </intent-filter>
         </activity>
         <activity
+            android:exported="true"
             android:name=".TreeA1B1Activity"
             android:label="@string/title_activity_tree_a1_b1"
             android:parentActivityName=".TreeA1Activity">
@@ -130,6 +135,7 @@
             </intent-filter>
         </activity>
         <activity
+            android:exported="true"
             android:name=".TreeA1B2Activity"
             android:label="@string/title_activity_tree_a1_b2"
             android:parentActivityName=".TreeA1Activity">
@@ -150,6 +156,7 @@
             </intent-filter>
         </activity>
         <activity
+            android:exported="true"
             android:name=".TreeA2Activity"
             android:label="@string/title_activity_tree_a2"
             android:parentActivityName=".MainActivity">
@@ -170,6 +177,7 @@
             </intent-filter>
         </activity>
         <activity
+            android:exported="true"
             android:name=".TreeA2B1Activity"
             android:label="@string/title_activity_tree_a2_b1"
             android:parentActivityName=".TreeA2Activity">
@@ -190,6 +198,7 @@
             </intent-filter>
         </activity>
         <activity
+            android:exported="true"
             android:name=".TreeA2B2Activity"
             android:label="@string/title_activity_tree_a2_b2"
             android:parentActivityName=".TreeA2Activity">
@@ -210,6 +219,7 @@
             </intent-filter>
         </activity>
         <activity
+            android:exported="true"
             android:name=".OrphanActivity"
             android:label="@string/title_activity_orphan">
             <intent-filter>
@@ -224,6 +234,7 @@
             </intent-filter>
         </activity>
         <activity
+            android:exported="true"
             android:name=".PreferencesActivity"
             android:label="@string/title_activity_preferences"
             android:parentActivityName=".MainActivity">
