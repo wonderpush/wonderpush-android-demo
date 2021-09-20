@@ -21,10 +21,13 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.PatternMatcher;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+
+import android.os.StrictMode;
 import android.util.Log;
 import android.widget.Toast;
 
 import java.util.Random;
+import java.util.concurrent.Executors;
 
 public class DemoApplication extends Application {
 
@@ -215,6 +218,28 @@ public class DemoApplication extends Application {
                         .setVibrateInSilentMode(true)
                         .setVibrationPattern(new long[]{200, 50, 200, 50, 200})
         );
+
+        // Enable StrictMode logs
+        StrictMode.VmPolicy.Builder vmPolicyBuilder = new StrictMode.VmPolicy.Builder()
+                .detectAll()
+                .penaltyLog()
+                //.penaltyDeath()
+                ;
+        StrictMode.ThreadPolicy.Builder threadPolicyBuilder = new StrictMode.ThreadPolicy.Builder()
+                .detectAll()
+                .penaltyLog()
+                //.penaltyDeath()
+                ;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            vmPolicyBuilder.penaltyListener(Executors.newSingleThreadExecutor(), v -> {
+                Log.e("WonderPush-StrictMode", "Caught", v);
+            });
+            threadPolicyBuilder.penaltyListener(Executors.newSingleThreadExecutor(), v -> {
+                Log.e("WonderPush-StrictMode", "Caught", v);
+            });
+        }
+        StrictMode.setVmPolicy(vmPolicyBuilder.build());
+        StrictMode.setThreadPolicy(threadPolicyBuilder.build());
     }
 
 }
