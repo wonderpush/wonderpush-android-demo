@@ -96,7 +96,7 @@ public class DemoApplication extends Application {
             }
         }, new IntentFilter(WonderPush.INTENT_NOTIFICATION_OPENED));
 
-        // Example deeplink handles by application logic
+        // Example deeplink handled by application logic
         LocalBroadcastManager.getInstance(this).registerReceiver(new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
@@ -109,7 +109,10 @@ public class DemoApplication extends Application {
                     openIntent.putExtra("resolvedProgrammatically", true);
                     TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
                     stackBuilder.addNextIntentWithParentStack(openIntent);
-                    stackBuilder.startActivities();
+                    // Revert some flags changes done by TaskStackBuilder to keep a possible current application state behind our added activity
+                    Intent[] intents = stackBuilder.getIntents();
+                    intents[0].setFlags(intents[0].getFlags() & ~(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME));
+                    context.startActivities(intents);
                 }
             }
         }, new IntentFilter(WonderPush.INTENT_NOTIFICATION_WILL_OPEN));
