@@ -21,6 +21,7 @@ import android.content.IntentFilter;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Handler;
 import android.os.PatternMatcher;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
@@ -85,14 +86,18 @@ public class DemoApplication extends Application {
             public void onReceive(Context context, Intent intent) {
                 String oldPushToken = intent.getStringExtra(WonderPush.INTENT_PUSH_TOKEN_CHANGED_EXTRA_OLD_KNOWN_PUSH_TOKEN);
                 String pushToken = intent.getStringExtra(WonderPush.INTENT_PUSH_TOKEN_CHANGED_EXTRA_PUSH_TOKEN);
-                Toast.makeText(getApplicationContext(), "TOKEN CHANGED from " + oldPushToken + " to " + pushToken, Toast.LENGTH_LONG).show();
+                new Handler().post(() -> {
+                    Toast.makeText(getApplicationContext(), "TOKEN CHANGED from " + oldPushToken + " to " + pushToken, Toast.LENGTH_LONG).show();
+                });
             }
         }, new IntentFilter(WonderPush.INTENT_PUSH_TOKEN_CHANGED));
         // Inform of INTENT_NOTIFICATION_OPENED intents
         LocalBroadcastManager.getInstance(this).registerReceiver(new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                Toast.makeText(getApplicationContext(), "RECEIVED PUSH: " + String.valueOf(intent), Toast.LENGTH_LONG).show();
+                new Handler().post(() -> {
+                    Toast.makeText(getApplicationContext(), "RECEIVED PUSH: " + String.valueOf(intent), Toast.LENGTH_LONG).show();
+                });
             }
         }, new IntentFilter(WonderPush.INTENT_NOTIFICATION_OPENED));
 
