@@ -18,6 +18,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
@@ -36,6 +37,8 @@ public class DemoApplication extends Application {
 
     private final String SHARED_PREF_FILE = "wonderpushdemo";
     private final String SHARED_PREF_KEY_REQUIRES_USER_CONSENT = "requiresUserConsent";
+    private final String SHARED_PREF_KEY_CLIENT_ID = "clientId";
+    private final String SHARED_PREF_KEY_SECRET = "secret";
     private final boolean SHARED_PREF_DEFAULT_REQUIRES_USER_CONSENT = false;
 
     private static DemoApplication singleton = null;
@@ -46,6 +49,67 @@ public class DemoApplication extends Application {
 
     public DemoApplication() {
         singleton = this;
+    }
+
+    public void initializeWonderPush(String clientId, String clientSecret) {
+        WonderPush.initialize(this, clientId, clientSecret);
+        setClientId(clientId);
+        setSecret(clientSecret);
+        WonderPushUserPreferences.setDefaultChannelId("default");
+        if (WonderPushUserPreferences.getChannel("default") == null) {
+            // The wrapping if serves to not modify existing preferences (as we don't store them elsewhere)
+            // Note: We mainly create the channel to ensure its existence for the PreferenceActivity
+            WonderPushUserPreferences.putChannel(
+                    new WonderPushChannel("default", null)
+                            .setName("Default")
+                            .setDescription("Miscellaneous notifications.")
+            );
+        }
+        // Here we declare a new channel
+        // On Android O this would create it once and leave it unchanged (except for name and description)
+        // On Android pre O, this would reset the user preferences stored in WonderPush
+        WonderPushUserPreferences.putChannel(
+                new WonderPushChannel("important", null)
+                        .setName("Important")
+                        .setDescription("Important notifications you should not overlook.")
+                        .setImportance(NotificationManager.IMPORTANCE_MAX)
+                        .setColor(Color.RED)
+                        .setLights(true)
+                        .setLightColor(Color.RED)
+                        .setSound(true)
+                        .setSoundUri(new Uri.Builder()
+                                .scheme(ContentResolver.SCHEME_ANDROID_RESOURCE)
+                                .authority(getPackageName())
+                                .path(String.valueOf(R.raw.sound))
+                                .build())
+                        .setVibrate(true)
+                        .setVibrateInSilentMode(true)
+                        .setVibrationPattern(new long[]{200, 50, 200, 50, 200})
+        );
+    }
+
+    public String getClientId() {
+        return this.getSharedPreferences(SHARED_PREF_FILE, 0)
+                .getString(SHARED_PREF_KEY_CLIENT_ID, null);
+    }
+
+    public void setSecret(String s) {
+        SharedPreferences prefs = this.getSharedPreferences(SHARED_PREF_FILE, 0);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(SHARED_PREF_KEY_SECRET, s);
+        editor.apply();
+    }
+
+    public void setClientId(String s) {
+        SharedPreferences prefs = this.getSharedPreferences(SHARED_PREF_FILE, 0);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(SHARED_PREF_KEY_CLIENT_ID, s);
+        editor.apply();
+    }
+
+    public String getSecret() {
+        return this.getSharedPreferences(SHARED_PREF_FILE, 0)
+                .getString(SHARED_PREF_KEY_SECRET, null);
     }
 
     public boolean getRequiresUserConsent() {
@@ -80,6 +144,14 @@ public class DemoApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        String clientId = getClientId();
+        String secret = getSecret();
+        if (clientId != null && secret != null) {
+            initializeWonderPush(clientId, secret);
+        }
+
+        SharedPreferences prefs = getSharedPreferences("wonderpushdemo", MODE_PRIVATE);
 
         LocalBroadcastManager.getInstance(this).registerReceiver(new BroadcastReceiver() {
             @Override
@@ -207,37 +279,6 @@ public class DemoApplication extends Application {
         // Note that we set this to true in the BuildConfig to possibly set it to false now, which is a valid pattern
         WonderPush.setRequiresUserConsent(this.getRequiresUserConsent());
 
-        WonderPushUserPreferences.setDefaultChannelId("default");
-        if (WonderPushUserPreferences.getChannel("default") == null) {
-            // The wrapping if serves to not modify existing preferences (as we don't store them elsewhere)
-            // Note: We mainly create the channel to ensure its existence for the PreferenceActivity
-            WonderPushUserPreferences.putChannel(
-                    new WonderPushChannel("default", null)
-                            .setName("Default")
-                            .setDescription("Miscellaneous notifications.")
-            );
-        }
-        // Here we declare a new channel
-        // On Android O this would create it once and leave it unchanged (except for name and description)
-        // On Android pre O, this would reset the user preferences stored in WonderPush
-        WonderPushUserPreferences.putChannel(
-                new WonderPushChannel("important", null)
-                        .setName("Important")
-                        .setDescription("Important notifications you should not overlook.")
-                        .setImportance(NotificationManager.IMPORTANCE_MAX)
-                        .setColor(Color.RED)
-                        .setLights(true)
-                        .setLightColor(Color.RED)
-                        .setSound(true)
-                        .setSoundUri(new Uri.Builder()
-                                .scheme(ContentResolver.SCHEME_ANDROID_RESOURCE)
-                                .authority(getPackageName())
-                                .path(String.valueOf(R.raw.sound))
-                                .build())
-                        .setVibrate(true)
-                        .setVibrateInSilentMode(true)
-                        .setVibrationPattern(new long[]{200, 50, 200, 50, 200})
-        );
 
         // Enable StrictMode logs
         StrictMode.VmPolicy.Builder vmPolicyBuilder = new StrictMode.VmPolicy.Builder()

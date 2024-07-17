@@ -42,5 +42,6 @@
     <string name="mnuMainPreferences">Preferences&#8230;</string>
 
     <string name="title_activity_preferences">Preferences</string>
+    <string name="title_activity_initialize">Initialize WonderPush</string>
 
 </resources>

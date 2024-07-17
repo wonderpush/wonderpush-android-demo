@@ -37,6 +37,12 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (WonderPush.isInitialized()) {
+            WonderPush.subscribeToNotifications();
+        } else {
+            startActivity(new Intent().setClass(this, InitializeActivity.class));
+        }
+
         setContentView(R.layout.activity_main);
 
         TextView label = (TextView) findViewById(R.id.lblDescription);

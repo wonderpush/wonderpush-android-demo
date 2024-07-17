@@ -249,6 +249,22 @@
                     android:host="preferences" />
             </intent-filter>
         </activity>
+        <activity
+            android:exported="true"
+            android:name=".InitializeActivity"
+            android:label="@string/title_activity_initialize"
+            android:parentActivityName=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:scheme="wonderpushdemo"
+                    android:host="initialize" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
